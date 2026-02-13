@@ -99,18 +99,9 @@ async function rellenarDatosOperacion(
   await clickContinuar(page);
 }
 
-async function confirmarYGenerarComprobante(page: Page): Promise<void> {
+async function pedirConfirmacionManual(): Promise<void> {
   console.log("Confirmar datos");
-  const confirmar = await pedirConfirmacion(
-    "¿Deseas generar el comprobante? (y/n): "
-  );
-
-  if (confirmar) {
-    // await page.locator("#btngenerar").click();
-    console.log("Comprobante generado");
-  } else {
-    console.log("Generación de comprobante cancelada");
-  }
+  await pedirConfirmacion("Terminar proceso? (Enter): ", "");
 }
 
 export default async function generarFactura(
@@ -124,7 +115,7 @@ export default async function generarFactura(
   await seleccionarTipoFacturacion(newPage);
   await rellenarDatosFacturacion(newPage);
   await rellenarDatosOperacion(newPage, monto);
-  await confirmarYGenerarComprobante(newPage);
+  await pedirConfirmacionManual();
 
   return newPage;
 }

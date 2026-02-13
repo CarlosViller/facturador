@@ -8,7 +8,7 @@ import { pedirMonto } from "./src/utils";
 
 const configs: LaunchOptions = {
   headless: false,
-  slowMo: 500,
+  slowMo: 100,
 };
 
 async function main(_args: string[]) {

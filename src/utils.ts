@@ -20,10 +20,10 @@ function hacerPregunta<T>(
 }
 
 // Función helper para pedir confirmación por consola
-export function pedirConfirmacion(pregunta: string): Promise<boolean> {
+export function pedirConfirmacion(pregunta: string, targetResponse: string = 'y'): Promise<boolean> {
     return hacerPregunta(pregunta, (respuesta: string) => {
         const respuestaLower = respuesta.toLowerCase().trim();
-        return respuestaLower === 'y';
+        return respuestaLower === targetResponse;
     });
 }
 
